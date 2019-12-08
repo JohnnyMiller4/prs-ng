@@ -4,23 +4,33 @@ import { ActivatedRoute, Router } from '@angular/router';
 //add Location
 import { Location } from '@angular/common';
 import { User } from 'src/app/model/user.class';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent extends BaseComponent implements OnInit {
   title: string = "User Edit";
   user: User = new User();
   id: number = 0;
+  isAdmin: boolean = false;
 
   constructor(private userSvc: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private loc: Location) { }
+              private loc: Location,
+              protected sysSvc: SystemService) {
+    super(sysSvc);
+  }
 
   ngOnInit() {
+    super.ngOnInit();
+    //get logged in user Admin status
+    this.isAdmin = this.sysSvc.loggedInUser.isAdmin;
+
     this.route.params.subscribe(parms => this.id = parms['id']);
     this.userSvc.get(this.id).subscribe(jr => {
       this.user = jr.data as User;

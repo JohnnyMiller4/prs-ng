@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class='component-content'>
     <div class='lefthalf'>
         <span class='component-title'>{{title}} </span>
@@ -17,6 +18,7 @@
         <th>Status</th>
         <th>Total</th>
         <th>Submitted Date</th>
+        <th>Action</th>
     </tr>
     <tr *ngFor="let r of requests">
         <td>{{r.id}}</td>
@@ -29,9 +31,12 @@
         <td>{{r.submittedDate}}</td>
         <td><a routerLink='/request/detail/{{r.id}}'><img src='assets/details.png' width='20' height='20'
                     title='Detail'></a>
-            |
-            <a routerLink='/request/edit/{{r.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+            <a *ngIf="loggedInID==r.user.id||isAdmin==true"> | </a>
+            <a *ngIf="loggedInID==r.user.id||isAdmin==true" routerLink='/request/edit/{{r.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
                     title='Edit'></a>
+            <a> | </a>
+            <a routerLink='/request/lines/{{r.id}}'><img src='assets/lines.png' width='20' height='20'
+                    title='Line-Items'></a>
         </td>
     </tr>
 </table>

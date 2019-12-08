@@ -14,6 +14,14 @@ import { ProductEditComponent } from '../feature/product/product-edit/product-ed
 import { ProductDetailComponent } from '../feature/product/product-detail/product-detail.component';
 import { RequestListComponent } from '../feature/request/request-list/request-list.component';
 import { UserLoginComponent } from '../feature/user/user-login/user-login.component';
+import { RequestCreateComponent } from '../feature/request/request-create/request-create.component';
+import { RequestDetailComponent } from '../feature/request/request-detail/request-detail.component';
+import { RequestEditComponent } from '../feature/request/request-edit/request-edit.component';
+import { RequestLinesComponent } from '../feature/request/request-lines/request-lines.component';
+import { LineItemEditComponent } from '../feature/line-item/line-item-edit/line-item-edit.component';
+import { LineItemCreateComponent } from '../feature/line-item/line-item-create/line-item-create.component';
+import { RequestReviewComponent } from '../feature/request/request-review/request-review.component';
+import { RequestApproveComponent } from '../feature/request/request-approve/request-approve.component';
 
 
 const routes: Routes = [
@@ -37,6 +45,15 @@ const routes: Routes = [
   {path: 'product/detail/:id', component: ProductDetailComponent},
   //request CRUD
   {path: 'request/list', component: RequestListComponent},
+  {path: 'request/create', component: RequestCreateComponent},
+  {path: 'request/edit/:id', component: RequestEditComponent},
+  {path: 'request/detail/:id', component: RequestDetailComponent},
+  {path: 'request/lines/:id', component: RequestLinesComponent},
+  {path: 'request/review', component: RequestReviewComponent},
+  {path: 'request/review/:id', component: RequestApproveComponent},
+  //line-items CRUD
+  {path: 'lineitem/edit/:id', component: LineItemEditComponent},
+  {path: 'lineitem/create/:id', component: LineItemCreateComponent},
   // '**' = catch all. Displays component as default page
   {path: '**', component: UserLoginComponent},
 ];

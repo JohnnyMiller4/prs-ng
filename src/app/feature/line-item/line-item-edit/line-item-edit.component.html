@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} </span>
+    </div>
+</div>
+<p *ngIf='!lineItem'>Loading...</p>
+<div *ngIf='lineItem'>
+    <main class="single">
+        <table class="table tabe-sm">
+            <tr>
+                <td>
+                    Product:
+                </td>
+                <td>
+                    <select [(ngModel)]="lineItem.product" class="rounded" [compareWith]="compProduct">
+                        <option *ngFor='let p of products' [ngValue]='p'>{{p.name +" | "+p.vendor.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Quantity:
+                </td>
+                <td>
+                    <input [(ngModel)]="lineItem.quantity" class="rounded" type="number">
+                </td>
+            </tr>
+            <span><button (click)="update()" class="btn btn-sm btn-primary">Update</button></span>
+            |
+            <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
+        </table>
+    </main>
+</div>

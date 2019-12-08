@@ -21,6 +21,10 @@ export class ProductService {
   save(product: Product): Observable<JsonResponse> {
     return this.http.post(this.url, product) as Observable<JsonResponse>;
   }
+  
+  update(product: Product): Observable<JsonResponse> {
+    return this.http.put(this.url, product) as Observable<JsonResponse>;
+  }
 
   //add get() method
   get(id: number): Observable<JsonResponse> {

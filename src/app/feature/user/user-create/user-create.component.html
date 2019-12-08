@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class='component-content'>
     <div class='lefthalf'>
         <span class='component-title'>{{title}} </span>
@@ -60,7 +61,7 @@
                     isReviewer:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.isReviewer" class="rounded" type="text">
+                    <input [(ngModel)]='user.isReviewer' name = 'reviewer' type="checkbox" id="Reviewer">
                 </td>
             </tr>
             <tr>
@@ -68,7 +69,7 @@
                     isAdmin:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.isAdmin" class="rounded" type="text">
+                    <input [(ngModel)]='user.isAdmin' name = 'admin' type="checkbox" id="Admin">
                 </td>
             </tr>
             <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span>

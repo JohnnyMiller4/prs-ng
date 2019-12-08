@@ -1,13 +1,14 @@
+<app-menu></app-menu>
 <div class='component-content'>
     <div class='lefthalf'>
         <span class='component-title'>{{title}} </span>
-        <span><a routerLink='/product/create'>
+        <span><a *ngIf='isAdmin==true' routerLink='/product/create'>
                 <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
         </span>
     </div>
 </div>
 <p *ngIf='!products'>Loading...</p>
-<table *ngIf='products' class="table">
+<table *ngIf='products&&products.length>0' class="table">
     <tr>
         <th>ID</th>
         <th>Vendor ID</th>
@@ -27,8 +28,8 @@
         <td><a routerLink='/product/detail/{{p.id}}'><img src='assets/details.png' width='20' height='20'
                     title='Detail'></a>
             |
-            <a routerLink='/product/edit/{{p.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+            <a *ngIf='isAdmin==true' routerLink='/product/edit/{{p.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
                     title='Edit'></a>
-        </td>>
+        </td>
     </tr>
 </table>

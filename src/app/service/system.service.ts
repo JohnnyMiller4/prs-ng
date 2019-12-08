@@ -5,10 +5,13 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SystemService {
   loggedInUser: User = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+  }
+
   isAdmin(): boolean { 
     return (this.loggedInUser == null) ? false : this.loggedInUser.isAdmin;
   }
@@ -19,9 +22,9 @@ export class SystemService {
   checkLogin(): void {
     // if user is not logged in, send to login page
     // commenting out for testing purposes
-    // if(this.loggedInUser == null) {
-    //   this.router.navigateByUrl("/login");
-    // }
+    if(this.loggedInUser == null) {
+      this.router.navigateByUrl("user/login");
+    }
   }
 }
 

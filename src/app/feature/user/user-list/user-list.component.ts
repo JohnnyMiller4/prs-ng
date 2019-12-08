@@ -2,21 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { JsonResponse } from 'src/app/model/json-response.class';
 import { User } from 'src/app/model/user.class';
 import { UserService } from 'src/app/service/user.service';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent extends BaseComponent implements OnInit {
   title: string = "User List";
   users: User[] = [];
   jr: JsonResponse;
+  loggedInID: number = 0;
   
-  constructor(private userSvc: UserService) { }
+  constructor(private userSvc: UserService,
+                    protected sysSvc: SystemService) {
+    super(sysSvc);
+  }
 
   ngOnInit() {
-    console.log("Calling user service list...");
+    super.ngOnInit();
+    //get id of logged in user
+    //get logged in user id
+    this.loggedInID = this.sysSvc.loggedInUser.id;
+
+    console.log("User List - Verify that we have a logged in user!");
+    console.log("User: ", this.loggedInUser);
+    console.log("Admin?", this.isAdmin);
+    console.log("Reviewer?", this.isReviewer);
     this.userSvc.list().subscribe(jresp => {
       this.jr = jresp;
       this.users = this.jr.data as User[];

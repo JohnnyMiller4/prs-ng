@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product.class';
 import { ProductService } from 'src/app/service/product.service';
 import { BaseComponent } from '../../base/base.component';
+import { SystemService } from 'src/app/service/system.service';
 
 
 @Component({
@@ -13,16 +14,18 @@ export class ProductListComponent extends BaseComponent implements OnInit {
   title: string = "Product List";
   products: Product[] = [];
 
-  constructor(private productSvc: ProductService) {
-    super();
-   }
+  constructor(private productSvc: ProductService,
+              protected sysSvc: SystemService) {
+    super(sysSvc);
+  }
 
   ngOnInit() {
-    super.ngOnInit;
+    super.ngOnInit();
     console.log("Calling product list...");
     this.productSvc.list().subscribe(jr => {
-      console.log("jr: ",jr);
+      console.log("jr: ", jr);
       this.products = jr.data as Product[];
+      console.log("this.products:",this.products);
     });
   }
 

@@ -5,13 +5,15 @@ import { ProductService } from 'src/app/service/product.service';
 import { VendorService } from 'src/app/service/vendor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent extends BaseComponent implements OnInit {
   title: string = "Product Detail";
   product: Product = new Product();
   vendors: Vendor[] = [];
@@ -21,9 +23,13 @@ export class ProductDetailComponent implements OnInit {
               private vendorSvc: VendorService,
               private router: Router,
               private route: ActivatedRoute,
-              private loc: Location) { }
+              private loc: Location,
+              protected sysSvc: SystemService) {
+    super(sysSvc);
+  }
 
   ngOnInit() {
+    super.ngOnInit();
     //get the ID from the URL
     this.route.params.subscribe(parms => this.id = parms['id']);
     

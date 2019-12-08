@@ -13,8 +13,8 @@ export class Request {
     reasonForRejecton: string;
 
     constructor(id: number = 0, user: User = new User(), description: string = "", justification: string = "",
-                dateNeeded: Date = new Date(), deliveryMode: string = "", status: string = "", total: number = 0,
-                submittedDate: Date = new Date(), reasonForRejection: string = "") {
+        dateNeeded: Date = new Date(), deliveryMode: string = "", status: string = "", total: number = 0,
+        submittedDate: Date = new Date(), reasonForRejection: string = "") {
         this.id = id;
         this.user = user;
         this.description = description;
