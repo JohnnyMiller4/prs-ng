@@ -18,8 +18,9 @@ export class RequestEditComponent extends BaseComponent implements OnInit {
   request: Request = new Request();
   users: User[] = [];
   id: number = 0;
+  validate: boolean = false;
 
-  constructor(private requestSvc: RequestService,
+  constructor(private reqSvc: RequestService,
               private router: Router,
               private route: ActivatedRoute,
               private userSvc: UserService,
@@ -32,7 +33,7 @@ export class RequestEditComponent extends BaseComponent implements OnInit {
     super.ngOnInit();
     this.route.params.subscribe(parms => this.id = parms['id']);
     //get request for the id passed in
-    this.requestSvc.get(this.id).subscribe(jr => {
+    this.reqSvc.get(this.id).subscribe(jr => {
       this.request = jr.data as Request;
       console.log("Request to edit: ", this.request)
     });
@@ -44,12 +45,26 @@ export class RequestEditComponent extends BaseComponent implements OnInit {
   }
 
   update(): void {
-    this.requestSvc.update(this.request).subscribe(jr => {
-      console.log("updated request...");
+    this.validateData();
+    if (this.validate == true) {
+    this.reqSvc.update(this.request).subscribe(jr => {
+      console.log("saved request...");
       console.log(this.request);
       this.router.navigateByUrl("request/list");
-    });
+    }); }
+    else {
+      window.alert("Error - incomplete or invalid data");
     }
+  }
+
+  validateData() {
+    if(this.request.description&&this.request.justification
+      &&this.request.deliveryMode != "") {
+        this.validate = true;
+      } else {
+        this.validate = false;
+      }
+  }
 
     compUser(a: User, b: User): boolean {
       return a && b && a.id == b.id;

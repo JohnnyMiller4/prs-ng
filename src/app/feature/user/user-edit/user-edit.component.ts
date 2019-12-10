@@ -17,12 +17,13 @@ export class UserEditComponent extends BaseComponent implements OnInit {
   user: User = new User();
   id: number = 0;
   isAdmin: boolean = false;
+  validate: boolean = false;
 
   constructor(private userSvc: UserService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private loc: Location,
-              protected sysSvc: SystemService) {
+    private router: Router,
+    private route: ActivatedRoute,
+    private loc: Location,
+    protected sysSvc: SystemService) {
     super(sysSvc);
   }
 
@@ -37,14 +38,30 @@ export class UserEditComponent extends BaseComponent implements OnInit {
     });
   }
 
-  save() {
-    this.userSvc.save(this.user).subscribe(jr => {
-      console.log("edited user...");
-      console.log(this.user);
-      this.router.navigateByUrl("/user/list");
-    });
+  update() {
+    this.validateData();
+    if (this.validate == true) {
+      this.userSvc.update(this.user).subscribe(jr => {
+        console.log("edited user...");
+        console.log(this.user);
+        this.router.navigateByUrl("/user/list");
+      });
+    } else {
+      window.alert("Error - incomplete or invalid data");
+    }
   }
 
+  validateData() {
+    if (this.user.username&&this.user.password&&
+      this.user.firstName&&this.user.lastName&&
+      this.user.phoneNumber&&this.user.email != "") {
+      this.validate = true;
+    } else {
+      this.validate = false;
+    }
+    console.log("validate: ", this.validate)
+  }
+  
   backClicked() {
     this.loc.back();
   }

@@ -15,6 +15,7 @@ import { LineItemService } from 'src/app/service/line-item.service';
 export class RequestLinesComponent extends BaseComponent implements OnInit {
   title: string = "Request Detail";
   request: Request = new Request();
+  requests: Request[] = [];
   lineItems: LineItem[] = [];
   id: number = 0;
 
@@ -42,7 +43,13 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
       console.log("jr: ", jr);
       this.lineItems = jr.data as LineItem[];
       console.log("this.lineItems:", this.lineItems);
-    })
+    });
+    //get request list
+    console.log("Calling request list...");
+    this.requestSvc.list().subscribe(jr => {
+      console.log("jr: ",jr);
+      this.requests = jr.data as Request[];
+    });
   }
 
   delete(id: number) {

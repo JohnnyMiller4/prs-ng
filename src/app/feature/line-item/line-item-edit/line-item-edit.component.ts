@@ -18,13 +18,14 @@ export class LineItemEditComponent extends BaseComponent implements OnInit {
   lineItem: LineItem = new LineItem();
   products: Product[] = [];
   id: number = 0;
+  validated: boolean = false;
 
   constructor(private liSvc: LineItemService,
-              private productSvc: ProductService,
-              protected sysSvc: SystemService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private loc: Location) {
+    private productSvc: ProductService,
+    protected sysSvc: SystemService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private loc: Location) {
     super(sysSvc);
   }
 
@@ -44,19 +45,33 @@ export class LineItemEditComponent extends BaseComponent implements OnInit {
   }
 
   update(): void {
-    this.liSvc.update(this.lineItem).subscribe(jr => {
-      console.log("updated lineItems...");
-      console.log(this.lineItem);
-      this.backClicked();
-    });
+    this.validateData();
+    if (this.validated == true) {
+      this.liSvc.update(this.lineItem).subscribe(jr => {
+        console.log("updated lineItems...");
+        console.log(this.lineItem);
+        this.backClicked();
+      })
+    } else {
+      window.alert("Error - incomplete or invalid data");
     }
+  };
 
-    compProduct(a: Product, b: Product): boolean {
-      return a && b && a.id == b.id;
+  validateData() {
+    console.log(this.lineItem.product);
+    if (this.lineItem.quantity > 0 && this.lineItem.product.id != 0) {
+      this.validated = true;
+    } else {
+      this.validated = false;
     }
+  }
 
-    backClicked() {
-      this.loc.back();
-    }
+  compProduct(a: Product, b: Product): boolean {
+    return a && b && a.id == b.id;
+  }
+
+  backClicked() {
+    this.loc.back();
+  }
 
 }

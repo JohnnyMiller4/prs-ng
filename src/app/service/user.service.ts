@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post(this.url, user) as Observable<JsonResponse>;
   }
 
+  update(user: User): Observable<JsonResponse> {
+    return this.http.put(this.url, user) as Observable<JsonResponse>;
+  }
+
   //add get() method
   get(id: number): Observable<JsonResponse> {
     return this.http.get(this.url + id) as Observable<JsonResponse>;

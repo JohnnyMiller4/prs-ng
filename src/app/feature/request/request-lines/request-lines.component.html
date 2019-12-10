@@ -15,13 +15,13 @@
         <td>{{request.id}}</td>
         <td>{{request.description}}</td>
         <td>{{request.status}}</td>
-        <td>{{request.total}}</td>
+        <td>{{request.total | currency}}</td>
     </tr>
 </table>
 <div class='component-content'>
     <div class='lefthalf'>
-        <span class='component-title'>Lines </span>
-        <span><a routerLink='/lineitem/create/{{request.id}}'>
+        <span class='component-title'>Lines</span>
+        <span *ngIf="loggedInUser.id==request.user.id&&request.status=='New'"><a routerLink='/lineitem/create/{{request.id}}'>
                 <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
         </span>
     </div>
@@ -33,16 +33,16 @@
         <th>Quantity</th>
         <th>Price</th>
         <th>Line Total</th>
-        <th>Action</th>
+        <th *ngIf="loggedInUser.id==request.user.id&&request.status=='New'||loggedInUser.isAdmin==true">Action</th>
     </tr>
-    <p *ngIf='lineItems.length==0'>No Line Items yet. Please create a new one!</p>
+    <p *ngIf='lineItems.length==0' id="noLI">No Line Items yet. Please create a new one!</p>
     <tr *ngFor="let li of lineItems">
         <td>{{li.id}}</td>
         <td>{{li.product.name}}</td>
         <td>{{li.quantity}}</td>
-        <td>{{li.product.price}}</td>
-        <td>{{li.total}}</td>
-        <td>
+        <td>{{li.product.price | currency}}</td>
+        <td>{{li.total | currency}}</td>
+        <td *ngIf="loggedInUser.id==request.user.id&&request.status=='New'||loggedInUser.isAdmin==true">
             <a routerLink='/lineitem/edit/{{li.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
                     title='Edit'></a>
             |
@@ -51,4 +51,5 @@
         </td>
     </tr>
 </table>
-<span><button (click)="submitRev()" class="btn btn-sm btn-primary">Submit Review</button></span>
+<span *ngIf="loggedInUser.id==request.user.id&&request.status=='New'&&lineItems.length>0">
+    <button (click)="submitRev()" class="btn btn-sm btn-primary">Submit Review</button></span>

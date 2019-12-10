@@ -31,14 +31,14 @@ super(sysSvc);
     this.route.params.subscribe(parms => this.id = parms['id']);
     this.requestSvc.get(this.id).subscribe(jr => {
       this.request = jr.data as Request;
-    })
+    });
     //call line item list
     console.log("Calling line item list...");
     this.liSvc.linesForRequest(this.id).subscribe(jr => {
       console.log("jr: ", jr);
       this.lineItems = jr.data as LineItem[];
       console.log("this.lineItems:", this.lineItems);
-    })
+    });
   }
 
   approve(request: Request) {
@@ -54,9 +54,10 @@ super(sysSvc);
   }
 
     reject(request: Request) {
+      console.log("rejected request...");
+      console.log(this.request);
+
       this.requestSvc.rejectReq(this.request).subscribe(jr => {
-        console.log("rejected request...");
-        console.log(this.request);
         console.log("submit request review jr:", jr);
         if (jr.errors != null) {
           console.log("Error submitting review: "+jr.errors)

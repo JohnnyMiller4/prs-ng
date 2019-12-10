@@ -4,6 +4,7 @@ import { RequestService } from 'src/app/service/request.service';
 import { SystemService } from 'src/app/service/system.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Request } from 'src/app/model/request.class';
+import { RequestLinesComponent } from '../request-lines/request-lines.component';
 
 @Component({
   selector: 'app-request-detail',

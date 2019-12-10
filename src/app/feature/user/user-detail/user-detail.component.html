@@ -51,7 +51,7 @@
                     E-Mail:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.email" class="rounded" type="text" disabled>
+                    <input [(ngModel)]="user.email" class="rounded" type="text" style="width:50%" disabled>
                 </td>
             </tr>
             <tr>
@@ -72,8 +72,8 @@
             </tr>
         </table>
     </main>
-    <span>
+    <span *ngIf="loggedInUser.id==user.id||loggedInUser.isAdmin==true">
         <span><a routerLink="/user/edit/{{user.id}}" class="btn btn-sm btn-warning">Edit</a></span>
-        <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+        <span *ngIf="loggedInUser.isAdmin==true"> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
     </span>
 </div>

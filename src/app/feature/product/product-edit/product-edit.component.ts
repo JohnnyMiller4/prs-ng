@@ -18,13 +18,14 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
   product: Product = new Product();
   vendors: Vendor[] = [];
   id: number = 0;
+  validate: boolean = false;
 
   constructor(private productSvc: ProductService,
-              private vendorSvc: VendorService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private loc: Location,
-              protected sysSvc: SystemService) {
+    private vendorSvc: VendorService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private loc: Location,
+    protected sysSvc: SystemService) {
     super(sysSvc);
   }
 
@@ -44,19 +45,35 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
   }
 
   update(): void {
-    this.productSvc.update(this.product).subscribe(jr => {
-      console.log("saved product...");
-      console.log(this.product);
-      this.router.navigateByUrl("product/list");
-    });
+    this.validateData();
+    if (this.validate == true) {
+      this.productSvc.update(this.product).subscribe(jr => {
+        console.log("saved product...");
+        console.log(this.product);
+        this.router.navigateByUrl("product/list");
+      });
+    } else {
+      window.alert("Error - incomplete or invalid data");
     }
+  }
 
-    compVendor(a: Vendor, b: Vendor): boolean {
-      return a && b && a.id == b.id;
+  validateData() {
+    if (this.product.price != null && this.product.partNumber
+      && this.product.name && this.product.unit != ""
+      && this.product.vendor.id&&this.product.price != 0) {
+      this.validate = true;
+    } else {
+      this.validate = false;
     }
+    console.log("validate: ", this.validate)
+  }
 
-    backClicked() {
-      this.loc.back();
-    }
+  compVendor(a: Vendor, b: Vendor): boolean {
+    return a && b && a.id == b.id;
+  }
+
+  backClicked() {
+    this.loc.back();
+  }
 
 }

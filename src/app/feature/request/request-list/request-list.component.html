@@ -27,15 +27,13 @@
         <td>{{r.dateNeeded}}</td>
         <td>{{r.deliveryMode}}</td>
         <td>{{r.status}}</td>
-        <td>{{r.total}}</td>
+        <td>{{r.total | currency}}</td>
         <td>{{r.submittedDate}}</td>
         <td><a routerLink='/request/detail/{{r.id}}'><img src='assets/details.png' width='20' height='20'
                     title='Detail'></a>
-            <a *ngIf="loggedInID==r.user.id||isAdmin==true"> | </a>
-            <a *ngIf="loggedInID==r.user.id||isAdmin==true" routerLink='/request/edit/{{r.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+            <a *ngIf="loggedInID==r.user.id&&r.status=='New'||isAdmin==true" routerLink='/request/edit/{{r.id}}'> | <img src='assets/pencil-icon.png' width='20' height='20'
                     title='Edit'></a>
-            <a> | </a>
-            <a routerLink='/request/lines/{{r.id}}'><img src='assets/lines.png' width='20' height='20'
+            <a routerLink='/request/lines/{{r.id}}'> | <img src='assets/lines.png' width='20' height='20'
                     title='Line-Items'></a>
         </td>
     </tr>

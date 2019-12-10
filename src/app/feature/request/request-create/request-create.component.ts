@@ -13,6 +13,7 @@ import { BaseComponent } from '../../base/base.component';
 export class RequestCreateComponent extends BaseComponent implements OnInit {
   title: string = "Request Create";
   request: Request = new Request();
+  validate: boolean = false;
 
   constructor(private reqSvc: RequestService,
     protected sysSvc: SystemService,
@@ -27,11 +28,25 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
   }
 
   save(): void {
+    this.validateData();
+    if (this.validate == true) {
     this.reqSvc.save(this.request).subscribe(jr => {
       console.log("saved request...");
       console.log(this.request);
       this.router.navigateByUrl("request/list");
-    })
+    }); }
+    else {
+      window.alert("Error - incomplete or invalid data");
+    }
+  }
+
+  validateData() {
+    if(this.request.description&&this.request.justification
+      &&this.request.deliveryMode != "") {
+        this.validate = true;
+      } else {
+        this.validate = false;
+      }
   }
 
 }

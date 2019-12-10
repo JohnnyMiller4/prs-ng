@@ -62,7 +62,7 @@
             </tr>
         </table>
     </main>
-    <span>
+    <span *ngIf="loggedInUser.isAdmin==true">
         <span><a routerLink="/product/edit/{{product.id}}" class="btn btn-sm btn-warning">Edit</a></span>
         <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
     </span>

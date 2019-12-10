@@ -13,10 +13,12 @@ import { BaseComponent } from '../../base/base.component';
 export class VendorCreateComponent extends BaseComponent implements OnInit {
   title: String = "Vendor Create";
   vendor: Vendor = new Vendor();
+  validate: boolean = false;
+
 
   constructor(private vendorSvc: VendorService,
-              private router: Router,
-              protected sysSvc: SystemService) {
+    private router: Router,
+    protected sysSvc: SystemService) {
     super(sysSvc);
   }
 
@@ -25,11 +27,28 @@ export class VendorCreateComponent extends BaseComponent implements OnInit {
   }
 
   save() {
-    this.vendorSvc.save(this.vendor).subscribe(jr => {
-      console.log("saved vendors...");
-      console.log(this.vendor);
-      this.router.navigateByUrl("/vendor/list");
-    })
+    this.validateData();
+    if (this.validate == true) {
+      this.vendorSvc.save(this.vendor).subscribe(jr => {
+        console.log("saved vendors...");
+        console.log(this.vendor);
+        this.router.navigateByUrl("/vendor/list");
+      });
+    } else {
+      window.alert("Error - incomplete or invalid data");
+    }
+  }
+
+  validateData() {
+    if (this.vendor.code && this.vendor.name
+      && this.vendor.address && this.vendor.city
+      && this.vendor.state && this.vendor.zip
+      && this.vendor.phoneNumber && this.vendor.email != "") {
+      this.validate = true;
+    } else {
+      this.validate = false;
+    }
+    console.log("validate: ", this.validate)
   }
 
 }

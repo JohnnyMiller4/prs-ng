@@ -61,7 +61,7 @@
                     isReviewer:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.isReviewer" class="rounded" type="text">
+                    <input [(ngModel)]='user.isReviewer' name = 'reviewer' type="checkbox" id="Reviewer">
                 </td>
             </tr>
             <tr *ngIf='isAdmin==true'>
@@ -69,10 +69,10 @@
                     isAdmin:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.isAdmin" class="rounded" type="text">
+                    <input [(ngModel)]='user.isAdmin' name = 'admin' type="checkbox" id="Admin">
                 </td>
             </tr>
-            <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span>
+            <span><button (click)="update()" class="btn btn-sm btn-primary">Update</button></span>
             |
             <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
         </table>

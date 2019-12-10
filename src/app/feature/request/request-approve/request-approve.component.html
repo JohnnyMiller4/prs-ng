@@ -15,7 +15,7 @@
         <td>{{request.id}}</td>
         <td>{{request.description}}</td>
         <td>{{request.status}}</td>
-        <td>{{request.total}}</td>
+        <td>{{request.total | currency}}</td>
     </tr>
 </table>
 <div class='component-content'>
@@ -39,8 +39,8 @@
         <td>{{li.id}}</td>
         <td>{{li.product.name}}</td>
         <td>{{li.quantity}}</td>
-        <td>{{li.product.price}}</td>
-        <td>{{li.total}}</td>
+        <td>{{li.product.price | currency}}</td>
+        <td>{{li.total | currency}}</td>
     </tr>
 </table>
 <span><button (click)="approve()" class="btn btn-sm btn-primary">Approve</button></span>
@@ -48,7 +48,7 @@
 <br>
 <td>
     Reason for Rejection:
-</td>
+</td><br>
 <td>
-    <input [(ngModel)]="request.reasonForRejecton" class="rounded" type="text">
+    <textarea [(ngModel)]="request.reasonForRejection" class="rounded" type="text" id="rejection"></textarea>
 </td>

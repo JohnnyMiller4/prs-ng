@@ -45,7 +45,8 @@
                     Phone Number:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.phoneNumber" class="rounded" type="text">
+                    <input [(ngModel)]="user.phoneNumber" class="rounded" type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" 
+                    maxlength="14">
                 </td>
             </tr>
             <tr>
@@ -53,7 +54,7 @@
                     E-Mail:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.email" class="rounded" type="text">
+                    <input maxlength="30" [(ngModel)]="user.email" class="rounded" type="text">
                 </td>
             </tr>
             <tr>

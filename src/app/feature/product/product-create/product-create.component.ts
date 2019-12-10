@@ -16,6 +16,7 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
   title: string = "Product Create";
   product: Product = new Product();
   vendors: Vendor[] = [];
+  validate: boolean = false;
 
   constructor(private productSvc: ProductService,
               private vendorSvc: VendorService,
@@ -33,11 +34,27 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
   }
 
   save(): void {
+    this.validateData();
+    if (this.validate == true) {
     this.productSvc.save(this.product).subscribe(jr => {
       console.log("saved product...");
       console.log(this.product);
       this.router.navigateByUrl("product/list");
     });
+  } else {
+    window.alert("Error - incomplete or invalid data");
+  }
+  }
+
+  validateData() {
+    if (this.product.price != null && this.product.partNumber
+      && this.product.name && this.product.unit != ""
+      && this.product.vendor.id&&this.product.price != 0) {
+      this.validate = true;
+    } else {
+      this.validate = false;
+    }
+    console.log("validate: ", this.validate)
   }
 
 }

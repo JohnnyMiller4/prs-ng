@@ -29,8 +29,8 @@
         <td>{{u.isReviewer}}</td>
         <td>{{u.isAdmin}}</td>
         <td><a routerLink='/user/detail/{{u.id}}'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
-             | 
-             <a *ngIf='loggedInID==u.id||isAdmin==true' routerLink='/user/edit/{{u.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+            
+             <a *ngIf='loggedInID==u.id||isAdmin==true' routerLink='/user/edit/{{u.id}}'> | <img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
              <!--<a *ngIf='!loggedInID==u.id||!isAdmin==true'><img src='assets/pencil-icon2.png' width='20' height='20' title='Edit'></a>-->
         </td>
     </tr>

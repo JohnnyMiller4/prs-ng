@@ -88,12 +88,12 @@
                     Reason for Rejection:
                 </td>
                 <td>
-                    <input [(ngModel)]="request.reasonForRejection" class="rounded" type="text" disabled>
+                    <textarea [(ngModel)]="request.reasonForRejection" class="rounded" type="text" disabled></textarea>
                 </td>
             </tr>
         </table>
     </main>
-    <span>
+    <span *ngIf="loggedInUser.id==request.user.id||loggedInUser.isAdmin==true">
         <span><a routerLink="/request/edit/{{request.id}}" class="btn btn-sm btn-warning">Edit</a></span>
         <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
     </span>

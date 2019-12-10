@@ -23,12 +23,11 @@
         <td>{{p.vendor.id}}</td>
         <td>{{p.partNumber}}</td>
         <td>{{p.name}}</td>
-        <td>{{p.price}}</td>
+        <td>{{p.price | currency}}</td>
         <td>{{p.unit}}</td>
         <td><a routerLink='/product/detail/{{p.id}}'><img src='assets/details.png' width='20' height='20'
                     title='Detail'></a>
-            |
-            <a *ngIf='isAdmin==true' routerLink='/product/edit/{{p.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+            <a *ngIf='isAdmin==true' routerLink='/product/edit/{{p.id}}'> | <img src='assets/pencil-icon.png' width='20' height='20'
                     title='Edit'></a>
         </td>
     </tr>

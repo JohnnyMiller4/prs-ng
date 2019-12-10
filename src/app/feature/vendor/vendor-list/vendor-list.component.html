@@ -33,8 +33,7 @@
         <td>{{v.email}}</td>
         <td><a routerLink='/vendor/detail/{{v.id}}'><img src='assets/details.png' width='20' height='20'
                     title='Detail'></a>
-            |
-            <a *ngIf='isAdmin==true' routerLink='/vendor/edit/{{v.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+            <a *ngIf='isAdmin==true' routerLink='/vendor/edit/{{v.id}}'> | <img src='assets/pencil-icon.png' width='20' height='20'
                     title='Edit'></a>
         </td>
     </tr>

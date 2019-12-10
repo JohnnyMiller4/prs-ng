@@ -20,6 +20,7 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
   request: Request = new Request;
   products: Product[] = [];
   id: number = 0;
+  validated: boolean = false;
 
   constructor(private liSvc: LineItemService,
               private productSvc: ProductService,
@@ -45,12 +46,26 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
 }
 
   save(): void {
+    this.validateData();
+    if (this.validated == true) {
     this.lineItem.request = this.request;
     this.liSvc.save(this.lineItem).subscribe(jr => {
       console.log("saved line item...");
       console.log(this.lineItem);
     this.router.navigateByUrl("/request/lines/"+this.id);
     });
+    } else {
+      window.alert("Error - incomplete or invalid data");
+    };
+  }
+
+  validateData() {
+    console.log(this.lineItem.product);
+    if (this.lineItem.quantity > 0 && this.lineItem.product.id != 0) {
+      this.validated = true;
+    } else {
+      this.validated = false;
+    }
   }
 
 }
