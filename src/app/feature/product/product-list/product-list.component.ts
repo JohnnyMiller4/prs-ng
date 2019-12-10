@@ -21,11 +21,8 @@ export class ProductListComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("Calling product list...");
     this.productSvc.list().subscribe(jr => {
-      console.log("jr: ", jr);
       this.products = jr.data as Product[];
-      console.log("this.products:",this.products);
     });
   }
 

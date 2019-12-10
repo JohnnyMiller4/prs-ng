@@ -33,9 +33,8 @@ export class RequestDetailComponent extends BaseComponent implements OnInit {
 
   delete() {
     this.requestSvc.delete(this.id).subscribe(jr => {
-      console.log("request delete jr: ", jr);
       if (jr.errors != null) {
-        console.log("Error deleting request: "+jr.errors)
+        window.alert(jr.errors);
       }
       this.router.navigateByUrl("request/list");
     });

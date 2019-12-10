@@ -21,11 +21,9 @@ export class VendorListComponent extends BaseComponent implements OnInit {
   }
   ngOnInit() {
     super.ngOnInit();
-    console.log("Calling vendor service list...");
     this.vendorSvc.list().subscribe(jresp => {
       this.jr = jresp;
       this.vendors = this.jr.data as Vendor[];
-      console.log(this.vendors);
     });
   }
 

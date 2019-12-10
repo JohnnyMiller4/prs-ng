@@ -39,16 +39,14 @@ export class ProductDetailComponent extends BaseComponent implements OnInit {
     //populate list of vendors
     this.vendorSvc.list().subscribe(jr => {
       this.vendors = jr.data as Vendor[];
-      console.log("vendors: ", this.vendors);
     });
   }
 
   delete() {
     this.productSvc.delete(this.id).subscribe(jr => {
-      console.log("product delete jr: ", jr);
       //Sean owes fix here
       if (jr.errors != null) {
-        console.log("Error deleting product: "+jr.errors)
+        window.alert(jr.errors);
       }
       this.router.navigateByUrl("product/list");
     });

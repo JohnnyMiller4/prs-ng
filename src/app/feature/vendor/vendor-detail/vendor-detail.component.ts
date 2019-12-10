@@ -34,9 +34,8 @@ export class VendorDetailComponent extends BaseComponent implements OnInit {
 
   delete() {
     this.vendorSvc.delete(this.id).subscribe(jr => {
-      console.log("vendor delete jr: ", jr);
       if (jr.errors != null) {
-        console.log("Error deleting vendor: "+jr.errors);
+        console.log(jr.errors);
       }
       this.router.navigateByUrl("vendor/list");
     });

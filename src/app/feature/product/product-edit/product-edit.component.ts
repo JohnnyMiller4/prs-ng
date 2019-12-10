@@ -35,12 +35,10 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
     //get product for the id passed in
     this.productSvc.get(this.id).subscribe(jr => {
       this.product = jr.data as Product;
-      console.log("Product to edit: ", this.product)
     });
     //populate list of vendors
     this.vendorSvc.list().subscribe(jr => {
       this.vendors = jr.data as Vendor[];
-      console.log("vendors: ", this.vendors)
     });
   }
 
@@ -48,8 +46,6 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
     this.validateData();
     if (this.validate == true) {
       this.productSvc.update(this.product).subscribe(jr => {
-        console.log("saved product...");
-        console.log(this.product);
         this.router.navigateByUrl("product/list");
       });
     } else {
@@ -65,7 +61,6 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
     } else {
       this.validate = false;
     }
-    console.log("validate: ", this.validate)
   }
 
   compVendor(a: Vendor, b: Vendor): boolean {

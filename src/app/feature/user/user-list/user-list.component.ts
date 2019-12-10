@@ -23,18 +23,15 @@ export class UserListComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    //get id of logged in user
-    //get logged in user id
-    this.loggedInID = this.sysSvc.loggedInUser.id;
 
-    console.log("User List - Verify that we have a logged in user!");
+    /*console.log("User List - Verify that we have a logged in user!");
     console.log("User: ", this.loggedInUser);
     console.log("Admin?", this.isAdmin);
-    console.log("Reviewer?", this.isReviewer);
+    console.log("Reviewer?", this.isReviewer);*/
     this.userSvc.list().subscribe(jresp => {
       this.jr = jresp;
       this.users = this.jr.data as User[];
-      console.log(this.users);
+      //console.log(this.users);
     });
   }
 

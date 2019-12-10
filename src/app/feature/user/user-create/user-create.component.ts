@@ -30,8 +30,6 @@ export class UserCreateComponent extends BaseComponent implements OnInit {
     this.validateData();
     if (this.validate == true) {
       this.userSvc.save(this.user).subscribe(jr => {
-        console.log("saved user...");
-        console.log(this.user);
         this.router.navigateByUrl("/user/list");
       });
     } else {
@@ -47,6 +45,5 @@ export class UserCreateComponent extends BaseComponent implements OnInit {
     } else {
       this.validate = false;
     }
-    console.log("validate: ", this.validate)
   }
 }

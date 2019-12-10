@@ -24,15 +24,12 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     this.request.user = this.sysSvc.loggedInUser;
-    console.log(this.request);
   }
 
   save(): void {
     this.validateData();
     if (this.validate == true) {
     this.reqSvc.save(this.request).subscribe(jr => {
-      console.log("saved request...");
-      console.log(this.request);
       this.router.navigateByUrl("request/list");
     }); }
     else {

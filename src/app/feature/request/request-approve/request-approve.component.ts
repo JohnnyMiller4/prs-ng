@@ -33,34 +33,24 @@ super(sysSvc);
       this.request = jr.data as Request;
     });
     //call line item list
-    console.log("Calling line item list...");
     this.liSvc.linesForRequest(this.id).subscribe(jr => {
-      console.log("jr: ", jr);
       this.lineItems = jr.data as LineItem[];
-      console.log("this.lineItems:", this.lineItems);
     });
   }
 
   approve(request: Request) {
     this.requestSvc.approveReq(this.request).subscribe(jr => {
-      console.log("approved request...");
-      console.log(this.request);
-      console.log("approve request review jr:", jr);
       if (jr.errors != null) {
-        console.log("Error submitting review: "+jr.errors)
+        window.alert("Error - "+jr.errors);
       }
       this.router.navigateByUrl("request/review");
     });
   }
 
     reject(request: Request) {
-      console.log("rejected request...");
-      console.log(this.request);
-
       this.requestSvc.rejectReq(this.request).subscribe(jr => {
-        console.log("submit request review jr:", jr);
         if (jr.errors != null) {
-          console.log("Error submitting review: "+jr.errors)
+          window.alert("Error - "+jr.errors);
         }
         this.router.navigateByUrl("request/review");
       });

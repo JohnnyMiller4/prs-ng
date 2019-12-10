@@ -13,7 +13,7 @@
                     Username:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.username" class="rounded" type="text">
+                    <input maxlength="20" [(ngModel)]="user.username" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -21,7 +21,7 @@
                     Password:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.password" class="rounded" type="text">
+                    <input maxlength="10" [(ngModel)]="user.password" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -29,7 +29,7 @@
                     First Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.firstName" class="rounded" type="text">
+                    <input maxlength="20" [(ngModel)]="user.firstName" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@
                     Last Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.lastName" class="rounded" type="text">
+                    <input maxlength="20" [(ngModel)]="user.lastName" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -54,7 +54,7 @@
                     E-Mail:
                 </td>
                 <td>
-                    <input maxlength="30" [(ngModel)]="user.email" class="rounded" type="text">
+                    <input maxlength="75" [(ngModel)]="user.email" class="rounded" type="text">
                 </td>
             </tr>
             <tr>

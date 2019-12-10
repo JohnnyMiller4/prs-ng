@@ -26,9 +26,7 @@ export class RequestReviewComponent extends BaseComponent implements OnInit {
     //get logged in user id
     this.id = this.sysService.loggedInUser.id;
     //get review list
-    console.log("Calling request review list...");
     this.requestSvc.listReview(this.id).subscribe(jr => {
-      console.log("jr: ", jr);
       this.requests = jr.data as Request[]
     });
   }

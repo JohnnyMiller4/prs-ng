@@ -25,9 +25,7 @@ export class RequestListComponent extends BaseComponent implements OnInit {
     //get logged in user id
     this.loggedInID = this.sysSvc.loggedInUser.id;
     //get request list
-    console.log("Calling request list...");
     this.requestSvc.list().subscribe(jr => {
-      console.log("jr: ",jr);
       this.requests = jr.data as Request[];
     });
   }

@@ -42,8 +42,6 @@ export class UserEditComponent extends BaseComponent implements OnInit {
     this.validateData();
     if (this.validate == true) {
       this.userSvc.update(this.user).subscribe(jr => {
-        console.log("edited user...");
-        console.log(this.user);
         this.router.navigateByUrl("/user/list");
       });
     } else {
@@ -59,7 +57,6 @@ export class UserEditComponent extends BaseComponent implements OnInit {
     } else {
       this.validate = false;
     }
-    console.log("validate: ", this.validate)
   }
   
   backClicked() {

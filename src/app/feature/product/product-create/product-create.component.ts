@@ -29,7 +29,6 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
     super.ngOnInit();
     this.vendorSvc.list().subscribe(jr => {
       this.vendors = jr.data as Vendor[];
-      console.log("vendors: ", this.vendors);
     });
   }
 
@@ -38,7 +37,6 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
     if (this.validate == true) {
     this.productSvc.save(this.product).subscribe(jr => {
       console.log("saved product...");
-      console.log(this.product);
       this.router.navigateByUrl("product/list");
     });
   } else {
@@ -54,7 +52,6 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
     } else {
       this.validate = false;
     }
-    console.log("validate: ", this.validate)
   }
 
 }

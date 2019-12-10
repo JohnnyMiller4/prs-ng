@@ -19,13 +19,13 @@ export class BaseComponent implements OnInit {
     this.sysSvc.checkLogin();
     // set the system user credentials in the current component
     this.loggedInUser = this.sysSvc.loggedInUser;
-    console.log('bc - loggedInUser: ', this.loggedInUser);
+    //console.log('bc - loggedInUser: ', this.loggedInUser);
     this.isAdmin = this.sysSvc.isAdmin();
     this.isReviewer = this.sysSvc.isReviewer();
-    console.log("Verify we have a logged in user!");
+    /*console.log("Verify we have a logged in user!");
     console.log("User: ", this.loggedInUser);
     console.log("Admin?", this.isAdmin);
-    console.log("Reviewer?", this.isReviewer);
+    console.log("Reviewer?", this.isReviewer);*/
   }
 
   sortBy(column: string): void {

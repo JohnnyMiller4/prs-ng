@@ -35,12 +35,10 @@ export class RequestEditComponent extends BaseComponent implements OnInit {
     //get request for the id passed in
     this.reqSvc.get(this.id).subscribe(jr => {
       this.request = jr.data as Request;
-      console.log("Request to edit: ", this.request)
     });
     //populate list of users
     this.userSvc.list().subscribe(jr => {
       this.users = jr.data as User[];
-      console.log("users: ", this.users)
     });
   }
 
@@ -48,8 +46,6 @@ export class RequestEditComponent extends BaseComponent implements OnInit {
     this.validateData();
     if (this.validate == true) {
     this.reqSvc.update(this.request).subscribe(jr => {
-      console.log("saved request...");
-      console.log(this.request);
       this.router.navigateByUrl("request/list");
     }); }
     else {

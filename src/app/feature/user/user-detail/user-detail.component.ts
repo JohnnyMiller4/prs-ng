@@ -36,9 +36,8 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
 
   delete() {
     this.userSvc.delete(this.id).subscribe(jr => {
-      console.log("user delete jr: ", jr);
       if (jr.errors != null) {
-        console.log("Error deleting user: "+jr.errors)
+        window.alert(jr.errors);
       }
       this.router.navigateByUrl("user/list");
     });

@@ -38,16 +38,11 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
       this.request = jr.data as Request;
     });
     //call line item list
-    console.log("Calling line item list...");
     this.liSvc.linesForRequest(this.id).subscribe(jr => {
-      console.log("jr: ", jr);
       this.lineItems = jr.data as LineItem[];
-      console.log("this.lineItems:", this.lineItems);
     });
     //get request list
-    console.log("Calling request list...");
     this.requestSvc.list().subscribe(jr => {
-      console.log("jr: ",jr);
       this.requests = jr.data as Request[];
     });
   }
@@ -56,7 +51,7 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
     this.liSvc.delete(id).subscribe(jr => {
       console.log("request delete jr: ", jr);
       if (jr.errors != null) {
-        console.log("Error deleting request: "+jr.errors)
+        window.alert("Error - "+jr.errors);
       }
       this.refreshPage();
     });
@@ -64,9 +59,8 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
 
   submitRev(request: Request) {
     this.requestSvc.submitRev(this.request).subscribe(jr => {
-      console.log("submit request review jr:", jr);
       if (jr.errors != null) {
-        console.log("Error submitting review: "+jr.errors)
+        window.alert("Error - "+jr.errors);
       }
       this.router.navigateByUrl("request/list");
     });

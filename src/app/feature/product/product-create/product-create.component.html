@@ -23,7 +23,7 @@
                     Part Number:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.partNumber" class="rounded" type="text">
+                    <input maxlength="50" [(ngModel)]="product.partNumber" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
                     Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.name" class="rounded" type="text">
+                    <input maxlength="150" [(ngModel)]="product.name" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@
                     Price:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.price" class="rounded" type="number">
+                    <input maxlength="13" [(ngModel)]="product.price" class="rounded" type="number">
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                     Unit:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.unit" class="rounded" type="text">
+                    <input maxlength="255" [(ngModel)]="product.unit" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
                     Photo Path (optional):
                 </td>
                 <td>
-                    <input [(ngModel)]="product.photoPath" class="rounded" type="text">
+                    <input maxlength="255" [(ngModel)]="product.photoPath" class="rounded" type="text">
                 </td>
             </tr>
             <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span>

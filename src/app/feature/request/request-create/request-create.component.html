@@ -21,7 +21,7 @@
                     Description:
                 </td>
                 <td>
-                    <input [(ngModel)]="request.description" class="rounded" type="text">
+                    <input maxlength="100" [(ngModel)]="request.description" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -29,7 +29,7 @@
                     Justification:
                 </td>
                 <td>
-                    <input [(ngModel)]="request.justification" class="rounded" type="text">
+                    <input maxlength="255" [(ngModel)]="request.justification" class="rounded" type="text">
                 </td>
             </tr>
             <tr>
@@ -46,8 +46,6 @@
                 </td>
                 <td>
                     <select [(ngModel)]="request.deliveryMode" class="rounded">
-                        <option value="Air">Air</option>
-                        <option value="Ground">Ground</option>
                         <option value="Pickup">Pickup</option>
                         <option value="Mail">Mail</option>
                     </select>

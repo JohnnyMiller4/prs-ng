@@ -23,8 +23,8 @@ export class UserLoginComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     //defaulting uname and pwd for testing purposes
-    this.user.username = 'GeneralOrgana';
-    this.user.password = 'Ben';
+    //this.user.username = 'GeneralOrgana';
+    //this.user.password = 'Ben';
 
     //initialize system user to null
     this.sysSvc.loggedInUser = null;
